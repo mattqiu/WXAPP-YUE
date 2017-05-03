@@ -1,0 +1,19 @@
+/**index.wxss**/
+@import '../../style/widget/kb-tabBar/kb-tabBar.wxss';
+@import '../../style/weui.wxss';
+@import '../../style/widget/kb-loading/kb-loading.wxss';
+
+@import '../../style/JustIn.wxss';
+
+page {
+  background-color: #f3f4f8;
+}
+
+.myCenter {
+  position: fixed;
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 70rpx;
+  right: 40rpx;
+  bottom: 40rpx;
+}

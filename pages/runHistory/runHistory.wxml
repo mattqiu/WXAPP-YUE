@@ -1,0 +1,21 @@
+<view class="section" wx:if="{{list.length > 0}}">
+  <view class="sectionHeader">
+      <view class="sectionHeader-val">活动日期</view>
+    <view class="sectionHeader-val">活动主题</view>
+    <view class="sectionHeader-val">跑步成绩</view>
+  </view>
+  <navigator url="../actDetail/actDetail?actId={{item.acid}}" class="cell" wx:for="{{list}}">
+  <!--<view class="cell" wx:for="{{list}}" bindtap="tapDial" id="{{item.mobile}}">-->
+      <view class="cell-val">{{item.start_date}}</view>
+    <view class="cell-val">{{item.title}}</view>
+    <view class="cell-val">{{item.scorestr}}</view>
+  <!--</view>-->
+  </navigator>
+</view>
+<image src="../../images/ic_noData.png" class="noDataTips" wx:if="{{list.length == 0 && !loading}}"></image>
+<view class="loading_box" wx:if="{{loading}}">
+    <view class="pulse pulse_1"></view>
+    <view class="pulse pulse_2"></view>
+    <view class="pulse pulse_3"></view>
+    <view class="pulse pulse_4"></view>
+</view>

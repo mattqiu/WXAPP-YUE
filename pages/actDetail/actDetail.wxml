@@ -1,0 +1,134 @@
+<view class="topView">
+  <view class="actState {{detailData.ac_status==0 ? 'disableStatus' : 'ableStatus'}}">{{actStatusStr}}</view>
+  <view class="actTitle">{{detailData.title}}</view>
+  <view class="initiatorSession" bindtap="tapdial" id="{{detailData.mobile}}">
+    <image class="initiator-avatar" src="{{detailData.headimgurl}}"></image>
+    <view class="initiator-name">发起者:{{detailData.name}}</view>
+    <image class="initiator-dial" src="/images/ic_dial.png"></image>
+  </view>
+  <view class="session">
+    <view class="session-tit">开始时间</view>
+    <view class="session-val">{{detailData.start_datetime}}</view>
+  </view>
+  <view class="session">
+    <view class="session-tit">报名截止</view>
+    <view class="session-val">{{detailData.end_datetime}}</view>
+  </view>
+  <view class="session">
+    <view class="session-tit">结束时间</view>
+    <view class="session-val">{{detailData.stop_datetime}}</view>
+  </view>
+  <view class="flexSession" wx:if="{{detailData.address.length > 0}}" bindtap="tapLocation">
+    <view class="session-flexTit">活动地点</view>
+    <view class="session-flexVal" style="  border-bottom: 1rpx solid #e4e4e4; padding-bottom:10rpx;"><text>{{detailData.address}}</text></view>
+    <view class="navigateBtn" wx:if="{{detailData.lat && detailData.lng}}">导航</view>
+  </view>
+  <view class="flexSession" wx:if="{{detailData.enrolllist.length > 0}}">
+    <view class="session-flexTit">已报名</view>
+    <view class="session-flexTit">{{detailData.totalpeople}}人</view>
+  </view>
+  <view class="enrollList" bindtap="tapEnrollList" wx:if="{{detailData.enrolllist.length > 0}}">
+    <image wx:for="{{detailData.enrolllist}}" class="avatar" style="height: {{avatarW}}rpx; width:{{avatarW}}rpx; border-radius: {{avatarW}}rpx;" hidden="{{index > 19}}" src="{{item.headimgurl}}">
+    </image>
+    <view class="avatar ellipsis" style="height: {{avatarW}}rpx; width:{{avatarW}}rpx; border-radius: {{avatarW}}rpx;" hidden="{{detailData.enrolllist.length < 20}}">...</view>
+  </view>
+  <view class="flexSession" wx:if="{{detailData.remark.length > 0}}">
+    <view class="session-flexTit">注意事项</view>
+    <view class="session-flexVal">
+      <text>{{detailData.remark}}</text>
+    </view>
+  </view>
+</view>
+<view class="uploader" wx:if="{{detailData.can_upload == 1 || detailData.imgList.length > 0}}">
+  <view class="uploader_topSession">
+    <view class="uploader_tit">活动图片</view>
+    <button class="uploader_rightTit" bindtap="tapEditBtn" wx:if="{{detailData.can_upload == 1}}">{{editMode ? "完成":"编辑"}}</button>
+  </view>
+  <view class="uploader_picList">
+    <block wx:for="{{files}}" wx:key="{{item}}">
+      <view class="uploader_cell {{uploadProgress[index] <= 100 ? 'uploader_status':''}}" bindtap="previewImage" bindtouchstart="mytouchstart" bindtouchend="mytouchend" id="{{index}}">
+        <image class="uploader_img" src="{{item}}" mode="aspectFill" />
+        <view class="uploader_status_content" wx:if="{{uploadProgress[index] ==-1}}" id="{{index}}">
+          <icon type="warn" size="23" color="#F43530"></icon>
+        </view>
+        <view class="uploader_cell_del" catchtap="tapDel" id="{{index}}" wx:if="{{editMode && detailData.imgList[index].candelete == 1}}">
+          <icon type="cancel" size="24"></icon>
+        </view>
+        <view class="uploader_status_content" wx:if="{{uploadProgress[index] >=0 && uploadProgress[index]<=100}}">{{uploadProgress[index]}}%</view>
+      </view>
+    </block>
+    <view class="uploader__input-box" wx:if="{{detailData.can_upload == 1}}">
+      <view class="uploader__input" bindtap="chooseImage"></view>
+    </view>
+  </view>
+</view>
+<view class="sportRecordSession" wx:if="{{detailData.is_justin == 0}}">
+<view class="sportRecordSession-header">
+<view class="sportRecordSession-header_lft">运动记录</view>
+<button class="sportRecordSession-header_rig" bindtap="setShowSportRecordBox">{{currentScore > 0 ? "修改" : "新增"}}我的记录</button>
+</view>
+<view class="sportRecordSession-cell sportRecordSession-cell-header" wx:if="{{scores.length > 0}}">
+<view class="sportRecordBox-cell-No"></view>
+<view class="sportRecordSession-cell-grid">头像</view>
+
+<view class="sportRecordSession-cell-grid">姓名</view>
+<view class="sportRecordSession-cell-grid">时间</view>
+</view>
+
+<view class="sportRecordSession-cell" wx:for="{{scores}}">
+<view class="sportRecordBox-cell-No">{{index + 1}}</view>
+<view class="sportRecordSession-cell-grid"><image src="{{item.headimgurl}}" class="sportRecordSession-cell-avatar"></image></view>
+
+<view class="sportRecordSession-cell-grid">{{item.name}}</view>
+<view class="sportRecordSession-cell-grid">{{item.scorestr}}</view>
+</view>
+<!--<button class="sportRecordSession-loadMore" bindtap="tapLoadMoreScore" wx:if="{{hasMoreScores && scores.length > 0}}">加载更多</button>-->
+</view>
+<view class="joinSessionSpace"></view>
+<view class="joinSession" wx:if="{{detailData.ac_status==0 ? true : false}}">
+  <view class="expiredBtn">报名已截止</view>
+</view>
+<view class="joinSession" wx:if="{{detailData.ac_status==1 ? true : false}}">
+  <view id="refuse" bindtap="setModalStatus" data-status="{{detailData.status==2 ? '' : '1'}}" class="refuseBtn {{detailData.status==2? 'disableBtn':''}}">{{ detailData.status == 2? "已拒绝" :"不参加"}}</view>
+  <view id="join" class="joinBtn {{detailData.status==1 ?'disableBtn':''}}" bindtap="setModalStatus" data-status="{{detailData.status==1 ? '' : '1'}}">{{detailData.status==1?"已报名":"参加"}}</view>
+</view>
+
+<view class="drawer_screen" bindtap="setShowSportRecordBox" data-status="0" wx:if="{{showSportRecordBox}}"></view>
+<view class="sportRecordBox" wx:if="{{showSportRecordBox}}">
+<view class="sportRecordBox-tit">添加个人跑步记录</view>
+<view class="sportRecordBox-content">
+<view class="sportRecordBox-content-tit">跑步时间</view>
+<input class="sportRecordBox-content-inputField {{error_hour ? 'errorInput' : ''}}"  value="{{currentScore > 0 ? time_hour : ''}}" type="number" bindinput="bindTimeFieldInput" id="hour"/>
+<view class="sportRecordBox-content-inputLabel">时</view>
+<input class="sportRecordBox-content-inputField {{error_minute ? 'errorInput' : ''}}" value="{{currentScore > 0 ? time_min : ''}}" type="number" bindinput="bindTimeFieldInput" focus="true" id="minute"/>
+<view class="sportRecordBox-content-inputLabel">分</view>
+<input class="sportRecordBox-content-inputField {{error_sec ? 'errorInput' : ''}}"  value="{{currentScore > 0 ? time_sec : ''}}" type="number" bindinput="bindTimeFieldInput" id="second"/>
+<view class="sportRecordBox-content-inputLabel">秒</view>
+</view>
+<button class="sportRecordBox-confirmBtn" size="default" type="primary" loading="{{addingSportRecord}}" bindtap="tapAddSportRecord">确认</button>
+</view>
+
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view class="drawer_attr_box" wx:if="{{showModalStatus}}">
+  <view class="close_icon" bindtap="setModalStatus" data-status="0">×</view>
+  <view class="drawer_attr_content">
+    <form wx:if="{{join}}" report-submit bindsubmit="tapConfirm" id="join" class="enrollOption">
+      <view class="centerTit">请输入参与人数</view>
+      <view class="joinNumSession">
+        <view class="addNumBtn" bindtap="tapAddNum" data-status="-1">-</view>
+        <input class="joinNumTextField" value="{{joinNum}}" />
+        <view class="addNumBtn" bindtap="tapAddNum" data-status="1">+</view>
+      </view>
+      <view class="noteSession" bindtap="changeNoteOpt">
+        <switch type="checkbox" checked="{{receiveNote}}" />
+        <view class="noteSession-text">是否接受通知</view>
+      </view>
+      <button form-type="submit" class="confirmBtn" id="join">确定</button>
+    </form>
+    <view wx:if="{{!join}}" class="enrollOption" style="margin-top:20rpx">
+      <view class="centerTit">不参与原因</view>
+      <textarea class="refuseReason" focus value="{{}}" bindinput="bindReasonValChange" placeholder="请输入不参加原因" bindconfirm="tapConfirm" id="refuse"/>
+      <view class="confirmBtn" id="refuse" bindtap="tapConfirm">确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,132 @@
+.myActListCell {
+  width: 710rpx;
+  margin-left: 20rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  padding: 20rpx 0 0;
+  margin-top: 40rpx;
+  box-sizing: border-box;
+  box-shadow: 2rpx 2rpx 2rpx 1rpx #dedfe3;
+}
+
+.myActListCell:first-child {
+  margin-top: 20rpx;
+}
+
+.flexModel {
+  display: flex;
+}
+
+.myActListCell .actStatus {
+  line-height: 40rpx;
+  font-size: 32rpx;
+  height: 40rpx;
+  text-align: center;
+  width: 150rpx;
+  border-radius: 5rpx;
+  color: white;
+  margin-bottom: 20rpx;
+}
+
+.enable {
+  background-color: #149717;
+}
+
+.disable {
+  background-color: #b6b6b6;
+}
+
+.myActListCell .actName {
+  line-height: 40rpx;
+  font-size: 32rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 10rpx;
+}
+
+.actInfoSession {
+  width: 670rpx;
+  padding: 20rpx 20rpx;
+  border-top: 1rpx solid #efeff2;
+  color: #888;
+}
+
+.actInfoTitle {
+  white-space: nowrap;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.actInfoSessionVal {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 540rpx;
+  display: inline-block;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin: auto;
+  margin-left: 10rpx;
+}
+
+.initiator {
+  font-size: 28rpx;
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.initiator-name {
+  font-size: 28rpx;
+  line-height: 50rpx;
+  margin-left: 10rpx;
+  height: 50rpx;
+}
+
+.initiator-avatar {
+  height: 50rpx;
+  width: 50rpx;
+  border-radius: 50rpx;
+  margin-left: 10rpx;
+  /*border: 1rpx solid #666;*/
+}
+
+.enrollList {
+  height: 100rpx;
+  width: 710rpx;
+  padding-left: 20rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 1rpx solid #efeff2;
+}
+
+.enrollList .enrollNum {
+  width: 130rpx;
+  margin-right: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+
+.enrollList .avatar {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 60rpx;
+  margin: auto 5rpx;
+  /*flex-shrink: 0;*/
+  border: 1rpx solid #e4e4e4;
+}
+
+.enrollList .ellipsis {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 20rpx;
+  font-size: 30rpx;
+  margin: auto 10rpx;
+}

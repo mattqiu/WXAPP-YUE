@@ -1,0 +1,65 @@
+@import '../../style/weui.wxss';
+
+page{
+    background-color: #f3f4f8;
+}
+
+.usrInfoContainer {
+  align-items: center;
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  background-color: white;
+  margin-top: 1rpx;
+}
+
+.usrInfoContainer .avatar {
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  margin: auto;
+}
+
+.usrDetail {
+  align-self: center;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.actionCell{
+    width: 100%;
+    height: 90rpx;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    box-sizing: border-box;
+    padding-left: 30rpx;
+    padding-right: 15rpx;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20rpx;
+}
+
+.actionCell .leftTit{
+  font-size: 26rpx;
+}
+
+.actionCell .rightTit{
+  font-size: 26rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.other-navigator-hover {
+    color:#4ec046;
+}
+
+.addBtn
+{
+  position: fixed;
+  width: 80rpx;
+  height: 80rpx;
+  left: 50%;
+  bottom: 50rpx;
+  margin-left: -40rpx;
+}

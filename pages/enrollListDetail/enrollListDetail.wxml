@@ -1,0 +1,55 @@
+<view class="section" wx:if="{{join.length > 0}}">
+  <view class="sectionTit">已报名({{joinNum}}人)</view>
+  <view class="sectionHeader">
+    <view class="sectionHeader-val">部门</view>
+    <view class="sectionHeader-val">姓名</view>
+    <view class="sectionHeader-val">人数</view>
+  </view>
+  <view class="cell" wx:for="{{join}}" bindtap="tapDial" id="{{item.mobile}}">
+    <view class="cell-val">{{item.department}}</view>
+    <view class="cell-val">{{item.name}}</view>
+    <view class="cell-val">{{item.people}}人</view>
+  </view>
+</view>
+<view class="section" wx:if="{{refuse.length}}">
+  <view class="sectionTit">已拒绝({{refuseNum}}人)</view>
+  <view class="sectionHeader">
+    <view class="sectionHeader-val">部门</view>
+    <view class="sectionHeader-val">姓名</view>
+    <view class="sectionHeader-val">原因</view>
+  </view>
+  <view class="cell" wx:for="{{refuse}}" bindtap="tapDial" id="{{item.mobile}}">
+    <view class="cell-val">{{item.department}}</view>
+    <view class="cell-val">{{item.name}}</view>
+    <view class="cell-val">{{item.reason}}</view>
+  </view>
+</view>
+<view class="section" wx:if="{{others.length > 0}}">
+  <view class="sectionTit">不确定的({{othersNum}}人)</view>
+  <view class="sectionHeader">
+    <view class="sectionHeader-val">部门</view>
+    <view class="sectionHeader-val">姓名</view>
+  </view>
+  <view class="cell" wx:for="{{others}}" bindtap="tapDial" id="{{item.mobile}}">
+    <view class="cell-val">{{item.department}}</view>
+    <view class="cell-val">{{item.name}}</view>
+  </view>
+</view>
+<view class="sendBtn" bindtap="tapSendEmail" wx:if="{{isOwner}}">发送邮件</view>
+<view class="sendBtnSpace"></view>
+<view class="loading_box" wx:if="{{loading}}">
+    <view class="pulse pulse_1"></view>
+    <view class="pulse pulse_2"></view>
+    <view class="pulse pulse_3"></view>
+    <view class="pulse pulse_4"></view>
+</view>
+<view class="inputWindow" wx:if="{{showSendWindow}}">
+<view class="inputWindow-tit">请输入邮件地址</view>
+<view class="inputWindow-inputField">
+  <view class="inputWindow-inputField-tit">邮件地址:</view>
+<input class="inputWindow-inputField-val" bindinput="inputEmail" bindconfirm="tapComfirmSend" focus="true"/>
+</view>
+<button class="inputWindow-confirmBtn" type="primary" loading="{{sendingEmail}}" bindtap="tapComfirmSend">确定发送</button>
+</view>
+<view class="drawer_screen" wx:if="{{showSendWindow}}" bindtap="setShowInputWindow" data-status="0"></view>
+<view class="errorTips" wx:if="{{errorEmailAddr}}">请输入正确的邮箱地址</view>

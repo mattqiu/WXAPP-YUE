@@ -1,0 +1,65 @@
+<!--<scroll-view class="actListView" scroll-y="true" style="height:{{winH}}px;" upper-threshold="-100" 
+lower-threshold="-100"
+bindscrolltolower="onReachBottom" bindscrolltoupper="reachTop">-->
+  <!--<view class="loading_box" style="padding:50rpx 0 10rpx;" wx:if="{{reloadingActList}}">
+    <view class="pulse pulse_1"></view>
+    <view class="pulse pulse_2"></view>
+    <view class="pulse pulse_3"></view>
+    <view class="pulse pulse_4"></view>
+  </view>-->
+  <view class="weui-search-bar" bindtap="tapSearch">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" />
+      </view>
+      <label class="weui-search-bar__label" hidden="{{inputShowed}}" >
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text" >搜索</view>
+      </label>
+    </view>
+  </view>
+  <view>
+  <view wx:for="{{actListData}}" wx:key="{{index}}" class="myActListCell" id="{{index}}" bindtap="tapactDetailCell">
+    <view class="flexModel">
+      <view class="actStatus {{item.ac_status==1 ? 'enable' : 'disable'}}">{{item.statusStr}}</view>
+      <view class="actName">{{item.title}}</view>
+    </view>
+    <view class="flexModel actInfoSession">
+      <view class="initiator">发起人: </view>
+      <view class="initiator-name">{{item.name}}</view>
+      <image class="initiator-avatar" src="{{item.headimgurl}}"></image>
+    </view>
+    <view class="flexModel actInfoSession">
+      <view class="actInfoTitle">报名截止: </view>
+      <view class="actInfoSessionVal">{{item.end_datetime}}</view>
+    </view>
+    <view class="flexModel actInfoSession">
+      <view class="actInfoTitle">活动时间: </view>
+      <view class="actInfoSessionVal">{{item.start_datetime}} 到 {{item.stop_datetime}}</view>
+    </view>
+    <view class="flexModel actInfoSession">
+      <view class="actInfoTitle">活动地点: </view>
+      <view class="actInfoSessionVal">{{item.address}}</view>
+    </view>
+    <view class="flexModel enrollList" wx:if="{{item.enrolllist.length > 0}}" catchtap="tapEnrollListDetail" id="{{index}}">
+      <view class="enrollNum">已报名{{item.totalpeople}}人</view>
+      <image wx:for="{{item.enrolllist}}" wx:key="{{index}}" wx:for-item="enrollItem" src="{{enrollItem.headimgurl}}" wx:if="{{index < 6}}" class="avatar">
+      </image>
+      <view class="ellipsis" wx:if="{{item.enrolllist.length>6}}">...</view>
+    </view>
+  </view>
+  <view class="loading_box" wx:if="{{loadingMoreActList}}">
+    <view class="pulse pulse_1"></view>
+    <view class="pulse pulse_2"></view>
+    <view class="pulse pulse_3"></view>
+    <view class="pulse pulse_4"></view>
+  </view>
+  <view class="weui-loadmore weui-loadmore_line" wx:if="{{noMoreActList}}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无更多数据</view>
+  </view>
+  </view>
+<!--</scroll-view>-->
+
+<image src="../../images/ic_center.png" class="myCenter" bindtap="tapMycenter"></image>
+

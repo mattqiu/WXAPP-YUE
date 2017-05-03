@@ -1,0 +1,21 @@
+<image class="topImg" src="{{imgSources.topImg}}"></image>
+<view class="inputView">
+  <view class="session">
+    <view class="sessoin-tit">姓名：</view>
+    <input class="session-val" type="text" name="nameVal" bindchange="bindNameValChange" value="{{userName}}" id="nameVal" />
+  </view>
+  <view class="session">
+    <view class="sessoin-tit">所在部门：</view>
+    <picker id="office" class="session-picker" bindchange="bindPickerChange" value="{{officeIdx}}" range="{{office}}">
+      <view class="picker">
+        {{office[officeIdx]}}
+      </view>
+    </picker>
+  </view>
+  <view class="session">
+    <view class="sessoin-tit">手机号码：</view>
+    <input class="session-val" type="number" name="phoneNum" id="phoneNum" bindchange="bindTelValChange" value="{{tel}}" />
+  </view>
+  <button class="myBtn" loading="{{registering}}" bindtap="register">注册</button>
+</view>
+<image class="bomImg" src="{{imgSources.bomImg}}"></image>

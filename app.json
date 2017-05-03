@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/register/register",
+    "pages/addActivity/addActivity",
+    "pages/enrollListDetail/enrollListDetail",
+    "pages/editUsrInfo/editUsrInfo",
+    "pages/actDetail/actDetail",
+    "pages/search/search",
+    "pages/myCenter/myCenter",
+    "pages/actList/actList",
+    "pages/runHistory/runHistory"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Just In",
+    "navigationBarTextStyle": "black",
+     "enablePullDownRefresh": false,
+     "backgroundColor":"#f3f4f8"
+  }
+}

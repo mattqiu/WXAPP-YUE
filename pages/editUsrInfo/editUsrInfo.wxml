@@ -1,0 +1,22 @@
+<view class="avatarContainer">
+  <image class="avatar" src="{{inputInfo.avatar}}" ></image>
+</view>
+<view class="session">
+  <view class="session-tit">部门:</view>
+  <picker id="office" class="session-val" bindchange="bindPickerChange" value="{{officeIdx}}" range="{{office}}">
+    <view class="session-val">
+      {{office[officeIdx]}}
+    </view>
+  </picker>
+</view>
+<view class="session">
+  <view class="session-tit">姓名:</view>
+  <input class="session-val" type="text" name="name" id="name" bindchange="bindInputValChange" value="{{inputInfo.name}}" />
+</view>
+<view class="session">
+  <view class="session-tit">手机号码：</view>
+  <input class="session-val" type="number" name="tel" id="tel" bindchange="bindInputValChange" value="{{inputInfo.tel}}" />
+</view>
+
+<button class="myBtn" bindtap="tapSaveInfo">保存</button>
+

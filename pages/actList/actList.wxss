@@ -1,0 +1,8 @@
+@import '../../style/widget/kb-loading/kb-loading.wxss';
+@import '../../style/JustIn.wxss';
+@import '../../style/weui.wxss';
+
+
+page {
+  background-color: #f3f4f8;
+}

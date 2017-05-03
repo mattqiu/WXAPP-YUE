@@ -1,0 +1,25 @@
+<view class="usrInfoContainer" bindtap="tapEditUsrInfo">
+  <image src="{{userInfo.headimgurl}}" class="avatar"></image>
+  <view class="usrDetail">
+    <text>{{userInfo.department}} - {{userInfo.name}}</text>
+  </view>
+</view>
+
+<navigator url="../actList/actList?type=1" class="actionCell" hover-class="other-navigator-hover">
+<view class="leftTit">我参与的活动</view>
+<image src="../../images/ic_rightAccessory.png" class="rightTit"></image>
+</navigator>
+
+<navigator url="" class="actionCell" url="../actList/actList?type=0" hover-class="other-navigator-hover">
+<view class="leftTit">我发起的活动</view>
+<image src="../../images/ic_rightAccessory.png" class="rightTit"></image>
+</navigator>
+
+<navigator url="../runHistory/runHistory" class="actionCell" hover-class="other-navigator-hover">
+<view class="leftTit">我的跑步记录</view>
+<image src="../../images/ic_rightAccessory.png" class="rightTit"></image>
+</navigator>
+
+
+
+<image src="../../images/ic_add.png" bindtap="addAct" class="addBtn"></image>

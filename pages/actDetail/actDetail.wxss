@@ -1,0 +1,470 @@
+page {
+  background: white;
+}
+
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  color: transparent;
+}
+
+.topView {
+  background: white;
+  padding-top: 20rpx;
+}
+
+.actState {
+  margin-left: 40rpx;
+  width: 120rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 30rpx;
+}
+
+.actTitle {
+  font-size: 40rpx;
+  color: #333;
+  width: 100%;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.ableStatus {
+  background-color: #149717;
+  color: white;
+}
+
+.disableStatus {
+  background-color: #999;
+  color: white;
+}
+
+.initiatorSession {
+  display: flex;
+  height: 80rpx;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.initiator-avatar {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 80rpx;
+  border: 1rpx solid #e4e4e4;
+}
+
+.initiator-name {
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  font-size: 30rpx;
+}
+
+.initiator-dial {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 20rpx 20rpx 20rpx 0;
+}
+
+.session {
+  display: flex;
+  height: 100rpx;
+  padding: 30rpx 20rpx 0 40rpx;
+  box-sizing: border-box;
+}
+
+.session-tit {
+  width: 150rpx;
+  font-size: 28rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.session-val {
+  border-bottom: 1rpx solid #e4e4e4;
+  font-size: 28rpx;
+  width: 450rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.flexSession {
+  display: flex;
+  padding: 30rpx 20rpx 0 40rpx;
+}
+
+.session-flexTit {
+  width: 150rpx;
+  font-size: 28rpx;
+  line-height: 42rpx;
+}
+
+.session-flexVal {
+  font-size: 28rpx;
+  width: 450rpx;
+  line-height: 42rpx;
+  word-wrap: break-word;
+}
+
+.tipsTit {
+  font-size: 30rpx;
+  margin-top: 30rpx;
+  margin-left: 40rpx;
+}
+
+.tipsVal {
+  font-size: 30rpx;
+  line-height: 45rpx;
+  margin: 20rpx 40rpx 0 80rpx;
+  padding-bottom: 30rpx;
+}
+
+.enrollList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10rpx 20rpx 20rpx;
+  background-color: #f2f2f2;
+  border-radius: 50rpx;
+  margin: 20rpx 30rpx;
+}
+
+.avatar {
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  border: 1rpx solid #898989;
+  box-sizing: border-box;
+}
+
+.ellipsis {
+  display: flex;
+  font-size: 26rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.sportRecordSession {
+  padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.sportRecordSession-header {
+  display: flex;
+  flex-direction: row;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-bottom: 20rpx;
+  justify-content: space-between;
+}
+
+.sportRecordSession-header_lft {
+  font-size: 28rpx;
+}
+
+.sportRecordSession-header_rig {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: 0;
+}
+
+.sportRecordSession-cell {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: center;*/
+  align-items: center;
+  height: 80rpx;
+  width: 100%;
+}
+
+.sportRecordSession-cell-header {
+    background-color: #ccd3e5;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+
+.sportRecordBox-cell-No{
+  width: 60rpx;
+    font-size: 26rpx;
+  text-align: center;
+}
+
+.sportRecordSession-cell-grid {
+  width: 230rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.sportRecordSession-cell-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  margin: auto;
+}
+
+.sportRecordSession-loadMore {
+  width: 70%;
+  font-size: 26rpx;
+  margin: 30rpx auto;
+}
+
+.sportRecordBox {
+  position: fixed;
+  width: 100%;
+  height: 350rpx;
+  background-color: white;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+}
+
+.sportRecordBox-tit {
+  width: 100%;
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.sportRecordBox-content {
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.sportRecordBox-content-tit {
+  font-size: 26rpx;
+}
+
+.sportRecordBox-content-inputField {
+  font-size: 26rpx;
+  width: 60rpx;
+  margin-left: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.errorInput {
+  color: red;
+  font-size: 32rpx;
+  border-bottom: 1rpx solid red;
+}
+
+.sportRecordBox-content-inputLabel {
+  font-size: 26rpx;
+  margin-left: 10rpx;
+}
+
+.sportRecordBox-confirmBtn {
+  font-size: 26rpx;
+  margin: 30rpx auto;
+  margin-top: 40rpx;
+  width: 80%;
+}
+
+.joinSession {
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  background-color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.joinSessionSpace {
+  height: 80rpx;
+  width: 100%;
+}
+
+.joinBtn {
+  width: 50%;
+  height: 80rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: white;
+  flex: 1;
+  background-color: #4ec046;
+}
+
+.refuseBtn {
+  width: 50%;
+  height: 80rpx;
+  font-size: 30rpx;
+  /*color: #595959;*/
+  color: white;
+  flex: 1;
+  background-color: #fd9827;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.expiredBtn {
+  width: 50%;
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #595959;
+  flex: 1;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #ccc;
+}
+
+.disableBtn {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
+.navigateBtn {
+  width: 80rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ccc;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+.delBtn {
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 2000;
+  color: #fff;
+}
+
+.drawer_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6000;
+  border-top: 1rpx solid #ccc;
+  background: #fff;
+}
+
+.close_icon {
+  width: 25rpx;
+  height: 25rpx;
+  line-height: 20rpx;
+  font-size: 30rpx;
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  padding: 10rpx;
+  color: #ccc;
+  border: 1rpx solid #ccc;
+  border-radius: 50%;
+  text-align: center;
+  background: #fff;
+}
+
+.drawer_attr_content {
+  padding: 20rpx;
+  height: 400rpx;
+  box-sizing: border-box;
+  /*overflow-y: scroll;*/
+}
+
+.enrollOption {
+  width: 100%;
+  height: 100%;
+  margin-top: 60rpx;
+}
+
+.centerTit {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.joinNumSession {
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.noteSession {
+  margin-top: 30rpx;
+  height: 50rpx;
+  /*width: 100%;*//*padding-left: 215rpx;*/
+  margin-left: 215rpx;
+  line-height: 50rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.noteSession-text {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+}
+
+.addNumBtn {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  text-align: center;
+  border: 1px solid #f5f5f5;
+  box-shadow: 0 0 10rpx 2rpx #becee7;
+}
+
+.joinNumTextField {
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 140rpx;
+  margin-left: 20rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  font-size: 30rpx;
+  border: 1rpx solid #e4e4e4;
+}
+
+.refuseReason {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  width: 70%;
+  height: 140rpx;
+  margin: 40rpx auto;
+  border: 1rpx solid #e4e4e4;
+}
+
+.confirmBtn {
+  /*background-color: #fd9827;*/
+  background-color: #4ec046;
+  color: white;
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 300rpx;
+  border: 1rpx solid #ccc;
+  text-align: center;
+  margin: 30rpx auto;
+}

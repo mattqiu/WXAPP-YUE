@@ -1,0 +1,60 @@
+<view class="section" style="margin-bottom: 20rpx;">
+  <view class="cell">
+    <view class="cell-tit">活动主题:</view>
+    <input class="cell-singleLineInput" type="text" name="title" bindchange="bindPickerValChange" value="{{inputInfo.title}}" id="title" />
+  </view>
+  <view class="cell">
+    <view class="cell-tit">活动地点:</view>
+    <input class="cell-singleLineInput" type="text" bindinput="bindPickerValChange" placeholder="点击定位可从地图选择地点" value="{{inputInfo.title}}" id="address" value="{{addrName}}" />
+    <image src="/images/ic_address.png" class="loacteBtn" bindtap="chooseLocation"></image>
+  </view>
+  <view class="cell">
+    <view class="cell-tit">报名截止:</view>
+    <picker class="cell-pickerInput" mode="date" start="{{currDate}}" bindchange="bindPickerValChange" id="deadlineDate">
+      {{inputInfo.deadlineDate}}
+    </picker>
+    <picker class="cell-pickerInput" mode="time" bindchange="bindPickerValChange" id="deadlineTime">
+      {{inputInfo.deadlineTime}}
+    </picker>
+  </view>
+  <view class="cell">
+    <view class="cell-tit">开始时间:</view>
+    <picker class="cell-pickerInput" mode="date" start="{{currDate}}" bindchange="bindPickerValChange" id="startDate">
+      {{inputInfo.startDate}}
+    </picker>
+    <picker class="cell-pickerInput" mode="time" bindchange="bindPickerValChange" id="startTime">
+      {{inputInfo.startTime}}
+    </picker>
+  </view>
+  <view class="cell">
+    <view class="cell-tit">结束时间:</view>
+    <picker class="cell-pickerInput" mode="date" start="{{currDate}}" bindchange="bindPickerValChange" id="endDate">
+      {{inputInfo.endDate}}
+    </picker>
+    <picker class="cell-pickerInput" mode="time" bindchange="bindPickerValChange" id="endTime">
+      {{inputInfo.endTime}}
+    </picker>
+  </view>
+  <view class="cell edgeAlign" bindtap="tapMoreOptions" style="{{openMoreOption ? '' : 'border-bottom: none;'}}">
+    <view class="cell-tit">更多选项</view>
+    <image src="{{openMoreOption ? '/images/ic_upAccessory.png' : '/images/ic_downAccessory.png'}}" class="asseccory"></image>
+  </view>
+  <view class="cell edgeAlign" wx:if="{{openMoreOption}}">
+    <view class="cell-tit" style="width:300rpx;">允许参与者上传照片</view>
+    <switch type="switch" class="optionSwitch" checked="{{allowUpload}}" id="allowUpload" bindchange="bindCheckValChange" />
+  </view>
+  <view class="cell edgeAlign" wx:if="{{openMoreOption}}">
+    <view class="cell-tit" style="width:300rpx;">常规跑步</view>
+    <switch type="switch" class="optionSwitch" checked="{{normalRun}}" id="normalRun" bindchange="bindCheckValChange" />
+  </view>
+  <view class="cell edgeAlign" wx:if="{{openMoreOption}}" style="border-bottom: none;">
+    <view class="cell-tit" style="width:300rpx;">是否公开(所有人可见)</view>
+    <switch type="switch" class="optionSwitch" checked="{{isPublic}}" id="isPublic" bindchange="bindCheckValChange" />
+  </view>
+</view>
+<view class="sectionHeader">注意事项</view>
+<view class="section">
+  <textarea class="remarkTextarea" type="text" maxlength="50" id="remark" bindinput="bindPickerValChange" placeholder="*限制在50字内。" value="{{inputInfo.remark}}" />
+</view>
+
+  <button class="addActBtn" disabled="{{addDisable}}" bindtap="bindTapPostBtn">{{actId == 0 ? '发布活动' : '保存'}}</button>

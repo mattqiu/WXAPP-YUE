@@ -1,0 +1,39 @@
+@import '../../style/widget/kb-loading/kb-loading.wxss';
+@import '../../style/JustIn.wxss';
+@import '../../style/weui.wxss';
+
+
+page {
+  background-color: #f3f4f8;
+}
+
+.searchTab {
+  height: 96rpx;
+  display: flex;
+  padding: 20rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #efeff4;
+  border-top: 1rpx solid #d7d6dc;
+  border-bottom: 1rpx solid #d7d6dc;
+}
+
+.searchTab_content {
+  background-color: white;
+  display: flex;
+  height: 56rpx;
+  width: 710rpx;
+  flex-direction: row;
+  padding-left: 10rpx;
+  border-radius: 5rpx;
+}
+
+.searchTab_icon {
+  align-self: center;
+}
+
+.searchTab_input {
+  margin-left: 15rpx;
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+}

@@ -1,0 +1,186 @@
+var app = getApp()
+const Store = app.Store
+const dispatch = Store.dispatch
+
+Page({
+    data: {
+        isJoinedActList: true, //是否为参与过的活动列表
+        actList: [],
+
+        currPage: 1,
+        loadingMore: true,
+        noMoreData: false,
+    },
+    onLoad: function (options) {
+        let _isJoinedActList = options.type == 1 ? true : false
+        let navTit = options.type == 1 ? "我参与过的活动" : "我发起的活动"
+        this.setData({
+            isJoinedActList: _isJoinedActList
+        })
+        if (this.data.isJoinedActList) {
+            this.requestMyEnrollList()
+        }
+        else {
+            this.requestMyCreateList()
+        }
+        wx.setNavigationBarTitle({
+            title: navTit,
+        })
+    },
+    onShow: function () {
+        let that = this
+        this.unsubStore = Store.subscribe(() => {
+            const states = Store.getState().refreshStates
+            console.log(states)
+            if (states == "list") {
+                that.data.currPage = 1;
+                that.data.reFreshList = true;
+            }
+        })
+        if (that.data.reFreshList) {
+            that.setData({
+                noMoreData:false,
+                reFreshList:false,
+                actList:[],
+            })
+            if (that.data.isJoinedActList) {
+                that.requestMyEnrollList()
+            }
+            else {
+                that.requestMyCreateList()
+            }
+        }
+    },
+    onHide: function () {
+    },
+    onUnload: function () {
+        this.unsubStore()
+    },
+    onPullDownRefresh: function () {
+    },
+    onReachBottom: function () {
+        let that = this
+        if (!this.data.noMoreData) {
+            this.setData({
+                currPage: that.data.currPage + 1,
+                loadingMore: true
+            })
+            if (this.data.isJoinedActList) {
+                this.requestMyEnrollList()
+            }
+            else {
+                this.requestMyCreateList()
+            }
+        }
+    },
+
+    //bindMethod
+    tapActDetail: function (e) {
+        let that = this;
+        let index = e.currentTarget.id;
+            wx.navigateTo({
+                url: '../actDetail/actDetail?actId=' + that.data.actList[index].acid,
+            })
+    },
+    tapEnrollListDetail: function (e) {
+        let that = this;
+        let index = e.currentTarget.id;
+        let _actId = that.data.actList[index].acid;
+        wx.navigateTo({
+            url: '../enrollListDetail/enrollListDetail?actId=' + _actId,
+        })
+    },
+    //request
+    requestMyEnrollList: function (e) { //我参与过的活动
+        let that = this
+        let _data = { "page": that.data.currPage }
+        app.request({
+            url: "index.php/Xcx/Date/myEnroll",
+            data: _data,
+            success: function (res) {
+                if (res.myEnrollList && res.myEnrollList.length > 0) {
+                    var param = that.data.actList;
+                    if (that.data.currPage == 1) {
+                        param = [];
+                    }
+                    for (var i = 0; i < res.myEnrollList.length; i++) {
+                        let people = res.myEnrollList[i];
+                        let status = people.ac_status;
+                        let statusStr = "";
+                        if (status == 0) {
+                            statusStr = "报名截止";
+                        }
+                        else if (status == 1) {
+                            statusStr = "招募中";
+                        }
+                        else {
+                            statusStr = "活动结束";
+                        }
+                        people.statusStr = statusStr;
+                        param.push(people)
+                    }
+                    that.setData({
+                        actList: param,
+                        noMoreData: false,
+                    })
+                }
+                else {
+                    that.setData({
+                        noMoreData: true,
+                    })
+                }
+            },
+            cmp: function (e) {
+                that.setData({
+                    loadingMore: false,
+                })
+            }
+        })
+    },
+    requestMyCreateList: function (e) { //我发起的活动
+        let that = this
+        let _data = { "page": that.data.currPage }
+        app.request({
+            url: "index.php/Xcx/Date/myAcinfo",
+            data: _data,
+            success: function (res) {
+                if (res.myAcinfoList && res.myAcinfoList.length > 0) {
+                    var param = that.data.actList;
+                    if (that.data.currPage == 1) {
+                        param = [];
+                    }
+                    for (var i = 0; i < res.myAcinfoList.length; i++) {
+                        let people = res.myAcinfoList[i];
+                        let status = people.ac_status;
+                        let statusStr = "";
+                        if (status == 0) {
+                            statusStr = "报名截止";
+                        }
+                        else if (status == 1) {
+                            statusStr = "招募中";
+                        }
+                        else {
+                            statusStr = "活动结束";
+                        }
+                        people.statusStr = statusStr;
+                        param.push(people)
+                    }
+                    that.setData({
+                        actList: param,
+                        noMoreData: false,
+                    })
+                }
+                else {
+                    that.setData({
+                        noMoreData: true,
+                    })
+                }
+            },
+            cmp: function (e) {
+                that.setData({
+                    loadingMore: false,
+                })
+            }
+        })
+    }
+})

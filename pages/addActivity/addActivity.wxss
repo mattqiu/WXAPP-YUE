@@ -1,0 +1,101 @@
+page {
+  background: #f0f0f0;
+  font-size: 26rpx;
+}
+
+
+
+.loacteBtn{
+  margin: auto 0;
+  height: 100rpx;
+  width: 100rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+
+
+.sectionHeader
+{
+  margin-left: 20rpx;
+  width: 730rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.section
+{
+  width: 100%;
+  border-top: 1rpx solid #efefef;
+  border-bottom: 1rpx solid #efefef;
+  margin-bottom: 40rpx;
+  background-color: white;
+}
+
+.cell
+{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  margin-left: 20rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.cell-tit
+{
+  width: 150rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-left: 20rpx
+}
+
+.cell-singleLineInput
+{
+   height: 100rpx;
+  line-height: 100rpx;
+  flex: 1;
+}
+
+.cell-pickerInput{
+  width: 280rpx;
+  line-height: 100rpx;
+  height: 100rpx;
+  text-align: center;
+}
+
+.remarkTextarea
+{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15rpx;
+  line-height: 30rpx;
+  height: 150rpx;
+}
+
+.edgeAlign{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optionSwitch
+{
+  margin-right: 20rpx;
+}
+
+.asseccory{
+  padding-right: 40rpx;
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.addActBtn {
+  background-color: #20b922;
+  color: #fff;
+  font-size: 30rpx;
+  height: 88rpx;
+  width: 660rpx;
+  line-height: 88rpx;
+  margin-top: 50rpx;
+}
+
+
