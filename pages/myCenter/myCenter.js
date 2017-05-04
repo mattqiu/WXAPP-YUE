@@ -47,7 +47,7 @@ Page({
   //request
   requestUserInfo() {
     let that = this
-    let _url = 'index.php/Xcx/Date/getUserinfo'
+    let _url = 'index.php/Xcx/DateUserinfo/getUserinfo'
     let _data = {}
     app.request({url:_url, 
     data:_data,

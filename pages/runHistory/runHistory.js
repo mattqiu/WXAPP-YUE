@@ -34,7 +34,7 @@ Page({
   //网络
   requestMyRecord: function (cb) {
     let that = this
-    let _url = "index.php/Xcx/Date/myScore"
+    let _url = "index.php/Xcx/DateScore/myScore"
     let _data = { "page": that.data.currPage }
     if (that.data.userId != 0) {
       _data["userid"] = that.data.userId

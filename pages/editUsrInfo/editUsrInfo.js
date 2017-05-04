@@ -44,7 +44,7 @@ Page({
   //网络访问
   requestUsrInfo: function (e) {
     let that = this;
-    let _url = 'index.php/Xcx/Date/getUserinfo'
+    let _url = 'index.php/Xcx/DateUserinfo/getUserinfo'
     let _data = {}
     app.request({
       url: _url,
@@ -91,7 +91,7 @@ Page({
       })
       return;
     }
-    let _url = 'index.php/Xcx/Date/saveUserInfo'
+    let _url = 'index.php/Xcx/DateUserinfo/saveUserInfo'
     let _data = {
       "department": departMent,
       "name": name,

@@ -57,7 +57,7 @@ Page({
     let _currPage = this.data.currPage
     let _data = { "s_field": _s_field, "page": _currPage }
     app.request({
-      url: "index.php/Xcx/Date/acList",
+      url: "index.php/Xcx/DateAcinfo/acList",
       data: _data,
       success: function (res) {
         if (res.acList.length > 0) {

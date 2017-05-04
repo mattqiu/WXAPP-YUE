@@ -193,7 +193,7 @@ Page({
       cancelText: '返回编辑',
       success: function (res) {
         if (res.confirm) {
-          let _url = 'index.php/Xcx/Date/addDate'
+          let _url = 'index.php/Xcx/DateAcinfo/addDate'
           let _data = {
             "title": _title, "start_datetime": _startTime, "end_datetime": _deadline, "stop_datetime": _endTime,
             "address": _address, "remark": _remarks,

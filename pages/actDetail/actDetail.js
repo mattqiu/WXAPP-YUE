@@ -14,7 +14,8 @@ Page({
     formId: 0,
     receiveNote: true,
 
-
+    hasCancelNote:false, //是否已经收集了取消通知的form_id
+    cancelNoteFormId:'',
     time_hour: 0,
     time_min: 0,
     time_sec: 0,
@@ -349,7 +350,8 @@ Page({
     this.setData({
       showModalStatus: false,
     });
-    if (e.currentTarget.id == "join") { //参加
+    if (e.currentTarget.id != "refuse") { //参加
+
       this.setData({
         formId: e.detail.formId,
       })
@@ -423,7 +425,7 @@ Page({
     })
     let _data = { "acid": that.data.actId, "score": totalTime }
     app.request({
-      url: "index.php/Xcx/Date/updateScore",
+      url: "index.php/Xcx/DateScore/updateScore",
       data: _data,
       success: function (res) {
         wx.showToast({
@@ -476,7 +478,15 @@ Page({
     })
   },
   setModalStatus: function (e) {
-    if (e.currentTarget.id == "join") {
+
+    if(e.currentTarget.id == "formJoin")
+    {
+      this.setData({
+        cancelNoteFormId:e.detail.formId,
+        hasCancelNote:true,
+      })
+    }
+    if (e.currentTarget.id != "refuse") {
       this.setData({
         join: true,
       })
@@ -517,7 +527,7 @@ Page({
   },
   delImg: function (index, cb) {
     let that = this;
-    let _url = 'index.php/Xcx/Date/deleteImg'
+    let _url = 'index.php/Xcx/DateImg/deleteImg'
     let _data = {
       "imgid": that.data.detailData.imgList[index].imgid
     }
@@ -535,7 +545,7 @@ Page({
     let that = this;
     let session = app.getSession();
     wx.uploadFile({
-      url: app.globalData.host + 'index.php/Xcx/Date/uploadImg',
+      url: app.globalData.host + 'index.php/Xcx/DateImg/uploadImg',
       filePath: that.data.files[index],
       name: 'activitypic',
       header: {
@@ -604,7 +614,7 @@ Page({
     let that = this;
     let actId = this.data.actId;
     let _data = { "acid": actId }
-    let _url = 'index.php/Xcx/Date/acInfo'
+    let _url = 'index.php/Xcx/DateAcinfo/acInfo'
     app.request({
       url: _url,
       data: _data,
@@ -640,7 +650,7 @@ Page({
     that.setData({
       currScorePage: 1,
     })
-    let _url = "index.php/Xcx/Date/acScore"
+    let _url = "index.php/Xcx/DateScore/acScore"
     let _data = { "acid": that.data.actId, "page": that.data.currScorePage }
     app.request({
       url: _url,
@@ -675,7 +685,7 @@ Page({
     that.setData({
       currScorePage: that.data.currScorePage + 1,
     })
-    let _url = "index.php/Xcx/Date/acScore"
+    let _url = "index.php/Xcx/DateScore/acScore"
     let _data = { "acid": that.data.actId, "page": that.data.currScorePage }
     app.request({
       url: _url,
@@ -698,7 +708,7 @@ Page({
   },
   requestJoin: function (cb) {
     let that = this;
-    let _url = 'index.php/Xcx/Date/enrollYes'
+    let _url = 'index.php/Xcx/DateEnroll/enrollYes'
     let _cansend = that.data.receiveNote ? 0 : 1 //0表示接受信息
     var util = require('../../utils/util.js')
 
@@ -720,7 +730,7 @@ Page({
   },
   refuseJoin: function (cb) {
     let that = this;
-    let _url = 'index.php/Xcx/Date/enrollNo'
+    let _url = 'index.php/Xcx/DateEnroll/enrollNo'
     var util = require('../../utils/util.js')
 
     let _data = {

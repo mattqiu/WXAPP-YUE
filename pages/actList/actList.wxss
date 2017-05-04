@@ -6,3 +6,44 @@
 page {
   background-color: #f3f4f8;
 }
+
+
+.editCell
+{
+  position: relative;
+  overflow-x: scroll;
+  /*overflow-y: hidden;  */
+}
+
+.cellBody
+{
+  width: 100%;
+  border-top: 1rpx solid white;
+}
+
+.cellAccessory
+{
+  height: 100%;
+  width: 100rpx;
+  position: absolute;
+  top: 0;
+  font-size: 26rpx;
+  text-align: center;
+  right: -100rpx;
+  background-color: #fb3d3a;
+  color: white;
+}
+
+
+.cellAccessory-item
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 50%;
+  width: 100%;
+  font-size: 26rpx;
+  text-align: center;
+  color: white;
+}

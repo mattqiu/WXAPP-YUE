@@ -74,8 +74,7 @@ Page({
                 success: function (res) {
                     wx.getUserInfo({
                         success: function (res) {
-                            console.log("123123214f")
-                            that.globalData.userInfo = res.userInfo
+                            app.globalData.userInfo = res.userInfo
                             let _data = {
                                 'department': _office,
                                 'name': _usrName,
@@ -111,7 +110,7 @@ Page({
     },
     requestRegister: function (param) {
         let that = this
-        let _url = 'index.php/Xcx/Date/addUserInfo'
+        let _url= 'index.php/Xcx/DateUserinfo/addUserInfo'
         let _data = param
         app.request({
             url: _url,

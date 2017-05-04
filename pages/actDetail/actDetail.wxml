@@ -90,7 +90,10 @@
 </view>
 <view class="joinSession" wx:if="{{detailData.ac_status==1 ? true : false}}">
   <view id="refuse" bindtap="setModalStatus" data-status="{{detailData.status==2 ? '' : '1'}}" class="refuseBtn {{detailData.status==2? 'disableBtn':''}}">{{ detailData.status == 2? "已拒绝" :"不参加"}}</view>
-  <view id="join" class="joinBtn {{detailData.status==1 ?'disableBtn':''}}" bindtap="setModalStatus" data-status="{{detailData.status==1 ? '' : '1'}}">{{detailData.status==1?"已报名":"参加"}}</view>
+  <form wx:if="{{!hasCancelNote}}" bindsubmit="setModalStatus" data-status="{{detailData.status==1 ? '' : '1'}}" id = "formJoin"  class="joinBtn" report-submit>
+  <button form-type="submit" class="formJoinBtn">参加</button>
+  </form>
+  <view id="join" wx:if="{{hasCancelNote}}" class="joinBtn {{detailData.status==1 ?'disableBtn':''}}" bindtap="setModalStatus" data-status="{{detailData.status==1 ? '' : '1'}}">{{detailData.status==1?"已报名":"参加"}}</view>
 </view>
 
 <view class="drawer_screen" bindtap="setShowSportRecordBox" data-status="0" wx:if="{{showSportRecordBox}}"></view>

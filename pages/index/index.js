@@ -111,7 +111,7 @@ Page({
   //请求我可以参与的活动的列表
   requestActList() {
     let that = this;
-    let _url = 'index.php/Xcx/Date/acList'
+    let _url = 'index.php/Xcx/DateAcinfo/acList'
     let _data = { "page": that.data.actListCurrPage }
     app.request({url:_url,
      data:_data,

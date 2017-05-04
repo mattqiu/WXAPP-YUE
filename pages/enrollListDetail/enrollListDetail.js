@@ -75,7 +75,7 @@ Page({
     let that = this
     let _data = { "acid": that.data.actId }
     app.request({
-      url: "index.php/Xcx/Date/enrollList",
+      url: "index.php/Xcx/DateEnroll/enrollList",
       data: _data,
       success: function (res) {
         console.log(res)
@@ -83,7 +83,7 @@ Page({
           joinNum:res.people1,
           refuseNum:res.people2,
           othersNum:res.people3,
-          isOwner:res.isOwner,
+          isOwner:res.is_owner,
         })
         if (res.data1) {
           that.setData({
@@ -112,7 +112,7 @@ Page({
     let that = this
     let _data = { "email": that.data.emailAddr, "acid": that.data.actId }
     app.request({
-      url: "index.php/Xcx/Date/doExcel",
+      url: "index.php/Xcx/DateEmail/doExcel",
       data: _data,
       success: function (res) {
         console.log("成功了")

@@ -5,7 +5,7 @@
   </view>
 </view>
 <view wx:for="{{searchRes}}" wx:key="{{index}}" class="myActListCell" id="{{index}}" bindtap="tapactDetailCell">
-    <view class="flexModel">
+    <view class="flexModel" style="margin-top: 20rpx;">
       <view class="actStatus {{item.ac_status==1 ? 'enable' : 'disable'}}">{{item.statusStr}}</view>
       <view class="actName">{{item.title}}</view>
     </view>
