@@ -7,7 +7,6 @@ Page({
         isJoinedActList: true, //是否为参与过的活动列表
         actList: [],
 
-        editScrollX:[],
         currPage: 1,
         loadingMore: true,
         noMoreData: false,
@@ -81,15 +80,6 @@ Page({
     {
         let that = this;
         let index = e.currentTarget.id;
-        if(this.data.editScrollX.length > 0 && this.data.editScrollX[index] > 0)
-        {
-            let _editScrollX = this.data.editScrollX
-            _editScrollX[index] = 0
-            this.setData({
-                editScrollX:_editScrollX
-            })
-            return
-        }
         wx.navigateTo({
             url: '../actDetail/actDetail?actId=' + that.data.actList[index].acid,
         })
@@ -101,26 +91,6 @@ Page({
         wx.navigateTo({
             url: '../enrollListDetail/enrollListDetail?actId=' + _actId,
         })
-    },
-    bindScrollEditCell:function(e)
-    {
-        let that = this
-        let index = e.currentTarget.id
-        let scrollX = e.detail.scrollLeft
-        // var _editScrollX = this.data.editScrollX
-        let maxContentW = Math.ceil(100 * (e.detail.scrollWidth / 810))
-        // if(scrollX > 8)
-        // {
-        //     _editScrollX[index] = maxContentW
-        // }
-        // else
-        // {
-        //     _editScrollX[index] = 0
-        // }
-        // this.setData({
-        //     editScrollX:_editScrollX
-        // })
-        this.data.editScrollX[index] = scrollX
     },
     delAct: function (e) {
         let that = this
@@ -151,7 +121,6 @@ Page({
                     if (that.data.currPage == 1) {
                         param = [];
                     }
-                    var _editScrollX = []
                     for (var i = 0; i < res.myEnrollList.length; i++) {
                         let people = res.myEnrollList[i];
                         let status = people.ac_status;
@@ -167,11 +136,9 @@ Page({
                         }
                         people.statusStr = statusStr;
                         param.push(people)
-                        _editScrollX.push(0)
                     }
                     that.setData({
                         actList: param,
-                        editScrollX:_editScrollX,
                         noMoreData: false,
                     })
                 }

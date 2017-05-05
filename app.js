@@ -100,7 +100,6 @@ App({
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log
         if (res.data.status == 1) {
           if (_success) _success(res.data.data)
         }

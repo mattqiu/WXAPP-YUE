@@ -14,8 +14,11 @@ Page({
     formId: 0,
     receiveNote: true,
 
-    hasCancelNote:false, //是否已经收集了取消通知的form_id
-    cancelNoteFormId:'',
+    showCancelBox: false,
+    hasCancelNote: false, //是否已经收集了取消通知的form_id
+    cancelNoteFormId: '',
+    cancelReason: '', //取消的原因
+
     time_hour: 0,
     time_min: 0,
     time_sec: 0,
@@ -135,6 +138,11 @@ Page({
   bindReasonValChange: function (e) {
     this.setData({
       refuseReason: e.detail.value,
+    })
+  },
+  bindDelActReasonChange: function (e) {
+    this.setData({
+      cancelReason: e.detail.value,
     })
   },
 
@@ -339,6 +347,12 @@ Page({
       }
     })
   },
+  setCancelShowState: function (e) {
+    let that = this
+    this.setData({
+      showCancelBox: !that.data.showCancelBox
+    })
+  },
   changeNoteOpt: function (e) {
     let that = this
     this.setData({
@@ -405,6 +419,28 @@ Page({
       phoneNumber: e.currentTarget.id,
       success: function (res) {
 
+      }
+    })
+  },
+  tapDelActBtn: function (e) {
+    let that = this
+    this.requestDelAct(function (success) {
+      that.setData({
+        showCancelBox: false,
+      })
+      var util = require('../../utils/util.js')
+      util.dispatchRefreshParam("list")
+      if (success) {
+        wx.showToast({
+          title: '成功删除',
+          icon: 'success',
+          duration: 1000
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }, 1000)
       }
     })
   },
@@ -479,11 +515,10 @@ Page({
   },
   setModalStatus: function (e) {
 
-    if(e.currentTarget.id == "formJoin")
-    {
+    if (e.currentTarget.id == "formJoin") {
       this.setData({
-        cancelNoteFormId:e.detail.formId,
-        hasCancelNote:true,
+        cancelNoteFormId: e.detail.formId,
+        hasCancelNote: true,
       })
     }
     if (e.currentTarget.id != "refuse") {
@@ -716,6 +751,7 @@ Page({
       "acid": that.data.detailData.acid,
       "people": that.data.joinNum,
       "form_id": that.data.formId,
+      "form_id2": that.data.cancelNoteFormId,
       "cansend": _cansend
     }
     app.request({
@@ -747,5 +783,24 @@ Page({
         }
       }
     })
+  },
+  requestDelAct: function (cb) {
+    let that = this
+    let _url = '/index.php/Xcx/DateAcinfo/deleteAc'
+    let _data = {
+      "acid": that.data.detailData.acid,
+      "reason": that.data.cancelReason,
+    }
+    app.request({
+      url: _url,
+      data: _data,
+      success: function (res) {
+        if (cb) cb(true)
+      },
+      cmp: function (e) {
+        if (cb) cb()
+      }
+    })
   }
 })
+
