@@ -116,39 +116,35 @@ Page({
     app.request({url:_url,
      data:_data,
      success:function (data) {
-      if (data.acList.length > 0) {
-        var param = that.data.actListData;
-        if (that.data.actListCurrPage == 1) {
-          param = [];
-        }
-        for (var i = 0; i < data.acList.length; i++) {
-          let people = data.acList[i];
-          let status = people.ac_status;
-          let statusStr = "";
-          if (status == 0) {
-            statusStr = "报名截止";
-          }
-          else if (status == 1) {
-            statusStr = "招募中";
-          }
-          else {
-            statusStr = "活动结束";
-          }
-          people.statusStr = statusStr;
-          param.push(people)
-        }
-        that.setData({
-          actListData: param,
-          reloadingActList: false,
-          loadingMoreActList: false,
-        })
-      }
-      else {
+       var param = that.data.actListData;
+       if (that.data.actListCurrPage == 1) {
+         param = [];
+       }
+       for (var i = 0; i < data.acList.length; i++) {
+         let people = data.acList[i];
+         let status = people.ac_status;
+         let statusStr = "";
+         if (status == 0) {
+           statusStr = "报名截止";
+         }
+         else if (status == 1) {
+           statusStr = "招募中";
+         }
+         else {
+           statusStr = "活动结束";
+         }
+         people.statusStr = statusStr;
+         param.push(people)
+       }
+       that.setData({
+         actListData: param,
+         reloadingActList: false,
+         loadingMoreActList: false,
+       })
+      if(data.acList.length == 0){
         that.setData({
           actListCurrPage: that.data.actListCurrPage - 1,
           noMoreActList: true,
-          reloadingActList: false,
-          loadingMoreActList: false,
         })
       }
     },

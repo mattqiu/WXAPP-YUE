@@ -155,7 +155,7 @@ Page({
     let third_session = app.globalData.third_session;
     let _lat = "";
     let _lng = "";
-    let _canupload = that.data.allowUpload == true ? 1 : 0
+    let _canupload = that.data.allowUpload == true ? 1 : 0 //0表示其他用户不能上传
     let _publicstatus = that.data.isPublic ? 0 : 1
     let _is_justin = that.data.normalRun ? 0 : 1
     if (input.lat) {

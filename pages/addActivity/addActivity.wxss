@@ -96,6 +96,7 @@ page {
   width: 660rpx;
   line-height: 88rpx;
   margin-top: 50rpx;
+  margin-bottom: 50rpx;
 }
 
 

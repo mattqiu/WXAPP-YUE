@@ -57,4 +57,4 @@
   <textarea class="remarkTextarea" type="text" maxlength="50" id="remark" bindinput="bindPickerValChange" placeholder="*限制在50字内。" value="{{inputInfo.remark}}" />
 </view>
 
-  <button class="addActBtn" disabled="{{addDisable}}" bindtap="bindTapPostBtn">{{actId == 0 ? '发布活动' : '保存'}}</button>
+  <button class="addActBtn"  disabled="{{addDisable}}" bindtap="bindTapPostBtn">{{actId == 0 ? '发布活动' : '保存'}}</button>

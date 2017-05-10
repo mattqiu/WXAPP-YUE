@@ -594,7 +594,7 @@ Page({
         let data = JSON.parse(res.data);
 
         if (data.status == 1) {
-          let imgInfo = { "imgid": data.data.imgid, "candelete": 1 };
+          let imgInfo = { "imgid": data.data.imgid, "can_delete": 1 };
           let newDetailData = that.data.detailData
           newDetailData.imgList[index] = imgInfo
           that.setData({
@@ -744,7 +744,7 @@ Page({
   requestJoin: function (cb) {
     let that = this;
     let _url = 'index.php/Xcx/DateEnroll/enrollYes'
-    let _cansend = that.data.receiveNote ? 0 : 1 //0表示接受信息
+    let _cansend = that.data.receiveNote ? 1 : 0 //0表示不接受信息
     var util = require('../../utils/util.js')
 
     let _data = {
@@ -752,7 +752,7 @@ Page({
       "people": that.data.joinNum,
       "form_id": that.data.formId,
       "form_id2": that.data.cancelNoteFormId,
-      "cansend": _cansend
+      "can_send": _cansend
     }
     app.request({
       url: _url,

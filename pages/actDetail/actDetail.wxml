@@ -1,7 +1,7 @@
 <view class="topView">
   <view class="headSession">
   <view class="actState {{detailData.ac_status==0 ? 'disableStatus' : 'ableStatus'}}">{{actStatusStr}}</view>
-  <button bindtap="setCancelShowState" class="delButton">删除</button>
+  <button wx:if="{{detailData.ac_delete == 1}}" bindtap="setCancelShowState" class="delButton">删除</button>
   </view>
   <view class="actTitle">{{detailData.title}}</view>
   <view class="initiatorSession" bindtap="tapdial" id="{{detailData.mobile}}">
@@ -54,7 +54,7 @@
         <view class="uploader_status_content" wx:if="{{uploadProgress[index] ==-1}}" id="{{index}}">
           <icon type="warn" size="23" color="#F43530"></icon>
         </view>
-        <view class="uploader_cell_del" catchtap="tapDel" id="{{index}}" wx:if="{{editMode && detailData.imgList[index].candelete == 1}}">
+        <view class="uploader_cell_del" catchtap="tapDel" id="{{index}}" wx:if="{{editMode && detailData.imgList[index].can_delete == 1}}">
           <icon type="cancel" size="24"></icon>
         </view>
         <view class="uploader_status_content" wx:if="{{uploadProgress[index] >=0 && uploadProgress[index]<=100}}">{{uploadProgress[index]}}%</view>

@@ -35,7 +35,6 @@ App({
         wx.getUserInfo({
           success: function (res) {
             that.globalData.userInfo = res.userInfo
-            typeof cb == "function" && cb(that.globalData.userInfo)
           }
         })
         that.requestSession(res.code, function (status) {
@@ -52,7 +51,7 @@ App({
   requestSession: function (code, cb) {
     let that = this;
     wx.request({
-      url: that.globalData.host + 'index.php/Xcx/Date/getSession',
+      url: that.globalData.host + 'index.php/Xcx/Public/getSession',
       data: { "code": code },
       header: {
         "content-type": "application/x-www-form-urlencoded"
@@ -101,9 +100,11 @@ App({
       },
       success: function (res) {
         if (res.data.status == 1) {
+          that.globalData.loadingUrl[_url] = false
           if (_success) _success(res.data.data)
         }
         else if (res.data.status == -1) {
+          that.globalData.loadingUrl[_url] = false
           console.log("错误信息是" + res.data.msg)
           wx.showModal({
             title: '错误',
@@ -112,6 +113,7 @@ App({
           });
         }
         else if (res.data.status == -12) {
+          that.globalData.loadingUrl[_url] = false
           if (!that.globalData.hasDirectToRigister) {
             wx.redirectTo({
               url: '../register/register',
@@ -120,10 +122,10 @@ App({
           }
         }
         else if (res.data.status == -10 || res.data.status == -11) { //没有登录
-          console.log("登录期已过")
           that.login(function (status) {
             if (status == -1) {
               console.log("重新登录失败")
+              that.globalData.loadingUrl[_url] = false
               wx.showModal({
                 title: '错误',
                 content: '微信授权登录失败',
@@ -132,12 +134,18 @@ App({
             }
             else {
               console.log("重新登录，需要继续的操作是" + _url)
-              that.request(param)
+              if (!that.globalData.loadingUrl[_url])
+              {
+                console.log("进入重载程序")
+                that.globalData.loadingUrl[_url] = true
+                that.request(param)
+              }
             }
           })
         }
       },
       fail: function () {
+        that.globalData.loadingUrl[_url] = false
         wx.showModal({
           title: '警告',
           content: '网络请求失败',
@@ -154,6 +162,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    loadingUrl:{}, //标志某url是否处于重载状态
     third_session: '',
     hasDirectToRigister: false,
     //常量
